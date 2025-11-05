@@ -5,7 +5,7 @@ from extensions import db #type:ignore
 gallery_bp = Blueprint("gallery_bp", __name__)
 
 # ---- ADD IMAGE ----
-@gallery_bp.route("/", methods=["POST"])
+@gallery_bp.route("/gallery/", methods=["POST"])
 def add_image():
     data = request.get_json()
     image = GalleryImage(
@@ -18,21 +18,21 @@ def add_image():
 
 
 # ---- GET ALL IMAGES ----
-@gallery_bp.route("/", methods=["GET"])
+@gallery_bp.route("/gallery/", methods=["GET"])
 def get_images():
     images = GalleryImage.query.order_by(GalleryImage.uploaded_at.desc()).all()
     return jsonify([img.to_dict() for img in images]), 200
 
 
 # ---- GET IMAGES BY EVENT ----
-@gallery_bp.route("/event/<string:event_name>", methods=["GET"])
+@gallery_bp.route("/gallery/events/<string:event_name>", methods=["GET"])
 def get_images_by_event(event_name):
     images = GalleryImage.query.filter_by(event_name=event_name).all()
     return jsonify([img.to_dict() for img in images]), 200
 
 
 # ---- UPDATE IMAGE ----
-@gallery_bp.route("/<int:image_id>", methods=["PUT"])
+@gallery_bp.route("/gallery/<int:image_id>", methods=["PUT"])
 def update_image(image_id):
     image = GalleryImage.query.get_or_404(image_id)
     data = request.get_json() or {}
@@ -43,7 +43,7 @@ def update_image(image_id):
 
 
 # ---- DELETE IMAGE ----
-@gallery_bp.route("/<int:image_id>", methods=["DELETE"])
+@gallery_bp.route("/gallery/<int:image_id>", methods=["DELETE"])
 def delete_image(image_id):
     image = GalleryImage.query.get_or_404(image_id)
     db.session.delete(image)

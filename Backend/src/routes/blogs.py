@@ -5,7 +5,7 @@ from extensions import db #type:ignore
 blog_bp = Blueprint("blog_bp", __name__)
 
 # ---- CREATE BLOG ----
-@blog_bp.route("/", methods=["POST"])
+@blog_bp.route("/blogs/", methods=["POST"])
 def create_blog():
     data = request.get_json()
     blog = Blog(
@@ -20,20 +20,20 @@ def create_blog():
 
 
 # ---- GET ALL BLOGS ----
-@blog_bp.route("/", methods=["GET"])
+@blog_bp.route("/blogs/", methods=["GET"])
 def get_blogs():
     blogs = Blog.query.order_by(Blog.created_at.desc()).all()
     return jsonify([b.to_dict() for b in blogs]), 200
 
 
 # ---- GET SINGLE BLOG ----
-@blog_bp.route("/<int:blog_id>", methods=["GET"])
+@blog_bp.route("/blogs/<int:blog_id>", methods=["GET"])
 def get_blog(blog_id):
     blog = Blog.query.get_or_404(blog_id)
     return jsonify(blog.to_dict()), 200
 
 # ---- UPDATE BLOG ----
-@blog_bp.route("/<int:blog_id>", methods=["PUT"])
+@blog_bp.route("/blogs/<int:blog_id>", methods=["PUT"])
 def update_blog(blog_id):
     blog = Blog.query.get_or_404(blog_id)
     data = request.get_json() or {}
@@ -46,7 +46,7 @@ def update_blog(blog_id):
 
 
 # ---- DELETE BLOG ----
-@blog_bp.route("/<int:blog_id>", methods=["DELETE"])
+@blog_bp.route("/blogs/<int:blog_id>", methods=["DELETE"])
 def delete_blog(blog_id):
     blog = Blog.query.get_or_404(blog_id)
     db.session.delete(blog)

@@ -6,7 +6,7 @@ from datetime import datetime
 event_bp = Blueprint("event_bp", __name__)
 
 # ---- CREATE EVENT ----
-@event_bp.route("/", methods=["POST"])
+@event_bp.route("/events/", methods=["POST"])
 def create_event():
     data = request.get_json()
     try:
@@ -27,21 +27,21 @@ def create_event():
 
 
 # ---- GET ALL EVENTS ----
-@event_bp.route("/", methods=["GET"])
+@event_bp.route("/events/", methods=["GET"])
 def get_events():
     events = Event.query.order_by(Event.date.desc()).all()
     return jsonify([e.to_dict() for e in events]), 200
 
 
 # ---- GET SINGLE EVENT ----
-@event_bp.route("/<int:event_id>", methods=["GET"])
+@event_bp.route("/events/<int:event_id>", methods=["GET"])
 def get_event(event_id):
     event = Event.query.get_or_404(event_id)
     return jsonify(event.to_dict()), 200
 
 
 # ---- UPDATE EVENT ----
-@event_bp.route("/<int:event_id>", methods=["PUT"])
+@event_bp.route("/events/<int:event_id>", methods=["PUT"])
 def update_event(event_id):
     event = Event.query.get_or_404(event_id)
     data = request.get_json() or {}
@@ -64,7 +64,7 @@ def update_event(event_id):
 
 
 # ---- DELETE EVENT ----
-@event_bp.route("/<int:event_id>", methods=["DELETE"])
+@event_bp.route("/events/<int:event_id>", methods=["DELETE"])
 def delete_event(event_id):
     event = Event.query.get_or_404(event_id)
     db.session.delete(event)
