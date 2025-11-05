@@ -6,6 +6,9 @@ __pycache__/
 .venv/
 venv/
 env/
+Backend/venv
+Backend/venv/lib/python3.12/site-packages/click/__init__.py
+Backend/venv/lib/python3.12/site-packages/click/_compat.py
 
 # Instance folder (contains configuration and database)
 instance/
