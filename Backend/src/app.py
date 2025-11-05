@@ -18,10 +18,10 @@ def create_app():
     CORS(app)
 
     # Register blueprints
-    app.register_blueprint(auth_bp)
-    app.register_blueprint(blog_bp)
-    app.register_blueprint(event_bp)
-    app.register_blueprint(gallery_bp)
+    app.register_blueprint(auth_bp, url_prefix='/api')
+    app.register_blueprint(blog_bp, url_prefix='/api')
+    app.register_blueprint(event_bp, url_prefix='/api')
+    app.register_blueprint(gallery_bp, url_prefix='/api')
 
     with app.app_context():
         db.create_all()
