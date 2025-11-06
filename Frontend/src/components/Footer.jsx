@@ -4,33 +4,62 @@ import React from 'react';
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-100 text-gray-700">
-      <div className="container mx-auto px-6 py-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Social Media */}
-        <div className="flex items-center space-x-4">
-          <a href="https://instagram.com/cikv" target="_blank" rel="noopener noreferrer">
-            <FaInstagram size={24} className="hover:text-red-600" />
-          </a>
-          <a href="https://linkedin.com/company/cikv" target="_blank" rel="noopener noreferrer">
-            <FaLinkedin size={24} className="hover:text-red-600" />
-          </a>
-          <a href="mailto:info@cikv.org">
-            <FaEnvelope size={24} className="hover:text-red-600" />
-          </a>
+    // Main footer container with dark maroon background and light text
+    <footer className="bg-[#6D2828] text-amber-100 font-sans">
+      <div className="container mx-auto px-6 py-10">
+        
+        {/* Top Row: Affiliation and Join Button */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+          {/* Affiliation Info */}
+          <div className="text-center md:text-left">
+            <p className="text-lg font-medium">A Central Society of</p>
+            <p className="mt-1 text-xl font-semibold">Vivekananda Institute of Professional Studies - Technical Campus (VIPS-TC)</p>
+          </div>
+          {/* Join Society Button */}
+          <div className="flex-shrink-0">
+            <Link 
+              to="/forms" 
+              className="inline-block bg-amber-600 text-white px-8 py-3 rounded-md shadow-lg hover:bg-amber-700 text-lg font-semibold transition duration-300 ease-in-out"
+            >
+              Join The Society
+            </Link>
+          </div>
         </div>
 
-        {/* Quick Links */}
-        <div className="space-y-2">
-          <Link to="/" className="hover:text-red-600">Home</Link>
-          <Link to="/about" className="hover:text-red-600">About Us</Link>
-          <Link to="/contact" className="hover:text-red-600">Contact Us</Link>
-        </div>
+        {/* Divider */}
+        <hr className="border-amber-700 my-8" />
 
-        {/* Affiliation & Copy */}
-        <div className="text-sm">
-          <p>A Central Society of Vivekananda Institute of Professional Studies - Technical Campus</p>
-          <p className="mt-2">© 2025 Centre for Indian Knowledge and Values (CIKV). All Rights Reserved.</p>
+        {/* Bottom Row: Links, Copyright, and Socials */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          {/* Quick Links */}
+          <div className="flex space-x-6">
+            <Link to="/" className="hover:text-white transition duration-200">Home</Link>
+            <Link to="/about" className="hover:text-white transition duration-200">About Us</Link>
+            <Link to="/contact" className="hover:text-white transition duration-200">Contact Us</Link>
+          </div>
+
+          {/* Copyright */}
+          <div className="text-sm text-amber-300">
+            © {new Date().getFullYear()} CIKV. All Rights Reserved.
+          </div>
+
+          {/* Social Media Icons */}
+          <div className="flex justify-center items-center space-x-4">
+            <a href="https://www.instagram.com/cikvvips/" target="_blank" rel="noopener noreferrer" 
+               className="p-2 rounded-full hover:bg-amber-700 transition duration-200" aria-label="Instagram">
+              <FaInstagram size={22} />
+            </a>
+            <a href="https://linkedin.com/company/cikv" target="_blank" rel="noopener noreferrer"
+               className="p-2 rounded-full hover:bg-amber-700 transition duration-200" aria-label="LinkedIn">
+              <FaLinkedin size={22} />
+            </a>
+            <a href="mailto:info@cikv.org"
+               className="p-2 rounded-full hover:bg-amber-700 transition duration-200" aria-label="Email">
+              <FaEnvelope size={22} />
+            </a>
+          </div>
         </div>
+        
       </div>
     </footer>
   );
