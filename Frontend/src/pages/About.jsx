@@ -1,55 +1,162 @@
-import React from "react";
+import React from 'react';
+import { Link } from 'react-router-dom';
+// Example icons (you would import your own or use a library like react-icons)
+// For this example, I'll use simple SVGs as placeholders.
+// You could replace these with icons for: Awareness, Education, Practice, Integration
+const AwarenessIcon = () => <svg /* icon */ />; 
+const EducationIcon = () => <svg /* icon */ />;
+const PracticeIcon = () => <svg /* icon */ />;
+const IntegrationIcon = () => <svg /* icon */ />;
 
-const About = () => {
+
+export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-white text-gray-800">
-      <section className="max-w-5xl mx-auto py-16 px-6">
-        <h1 className="text-4xl font-bold text-center text-[#a3632d] mb-10">
-          About Centre for Indian Knowledge and Values (CIKV)
-        </h1>
-
-        <p className="text-lg leading-relaxed mb-6">
-          The Centre for Indian Knowledge and Values (CIKV) is a movement dedicated to exploring
-          and spreading the wealth of India’s ethical and cultural legacy. Our mission is to preserve
-          and promote the timeless principles of Indian wisdom, blending the ancient with the modern.
-        </p>
-
-        <h2 className="text-2xl font-semibold mt-8 mb-3 text-[#a3632d]">Mission & Vision</h2>
-        <ul className="list-disc ml-6 mb-6">
-          <li>
-            <strong>Mission:</strong> To serve as a beacon of knowledge, guiding people to rediscover the
-            roots of Indian ethics and values.
-          </li>
-          <li>
-            <strong>Vision:</strong> To share the universal relevance of Indian wisdom globally and inspire
-            a world grounded in respect, honesty, and compassion.
-          </li>
-        </ul>
-
-        <h2 className="text-2xl font-semibold mb-3 text-[#a3632d]">Core Objectives</h2>
-        <ul className="list-disc ml-6 mb-10 space-y-2">
-          <li><strong>Awareness:</strong> Creating awareness about timeless principles from Indian traditions.</li>
-          <li><strong>Education:</strong> Providing structured learning through workshops and seminars.</li>
-          <li><strong>Practice:</strong> Encouraging individuals to incorporate these values into their daily lives.</li>
-          <li><strong>Integration:</strong> Bridging ancient wisdom with contemporary life.</li>
-        </ul>
-
-        <h2 className="text-2xl font-semibold mb-4 text-[#a3632d]">Meet the Team</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            { name: "Dr. Kritika Nagdev", role: "Faculty Coordinator" },
-            { name: "Arnav Verma", role: "President" },
-          ].map((member, i) => (
-            <div key={i} className="p-6 border rounded-xl shadow-sm text-center">
-              <div className="w-24 h-24 mx-auto bg-gray-200 rounded-full mb-4" />
-              <h3 className="text-lg font-semibold">{member.name}</h3>
-              <p className="text-sm text-gray-600">{member.role}</p>
-            </div>
-          ))}
+    <main className="bg-[#FFFBEB]">
+      
+      {/* Section 1: Hero Banner */}
+      {/* This uses the same banner style from your homepage for consistency */}
+      <section 
+        className="relative bg-cover bg-center h-[40vh]" 
+        style={{ backgroundImage: "url('/assets/about-banner-yoga.jpg')" }} // Suggest using a fitting banner image
+      >
+        <div className="absolute inset-0 bg-black opacity-40"></div>
+        <div className="container relative z-10 mx-auto px-6 h-full flex flex-col justify-center">
+          <h1 className="text-5xl md:text-6xl font-bold text-white font-serif shadow-sm">
+            About CIKV
+          </h1>
+          <p className="text-2xl text-white mt-2 shadow-sm">
+            Bridging Ancient Wisdom with the Modern World
+          </p>
         </div>
       </section>
+
+      {/* Section 2: Introduction & Mission (Two-Column Layout) */}
+      <section className="container mx-auto px-6 py-20">
+        <div className="grid lg:grid-cols-5 gap-12">
+          
+          {/* Left Column: Detailed Introduction */}
+          <div className="lg:col-span-3 text-gray-700 leading-relaxed">
+            <h2 className="text-4xl font-bold text-amber-900 mb-6 font-serif">
+              A Movement to Preserve Our Heritage
+            </h2>
+            <p className="text-lg mb-4">
+              Centre for Indian Knowledge and Values (CIKV) embodies the rich tapestry of India's cultural heritage, ethical traditions, and profound wisdom. It is a movement dedicated to exploring and spreading the wealth of India's ethical and cultural legacy.
+            </p>
+            <p className="text-lg mb-4">
+              At its core, CIKV seeks to bridge the ancient with the modern, creating a platform where awareness about our ethics and values becomes a guiding light for individuals and communities alike. India's ancient scriptures, philosophical treatises, and spiritual practices offer a treasure trove of wisdom that remains as relevant today as it was centuries ago.
+            </p>
+            <p className="text-lg">
+              By delving into these teachings, CIKV aspires to nurture a sense of pride in our shared heritage and a commitment to ethical living.
+            </p>
+          </div>
+
+          {/* Right Column: Mission & Vision */}
+          <div className="lg:col-span-2 bg-white p-8 rounded-lg shadow-lg border border-gray-100">
+            <div className="mb-8">
+              <h3 className="text-3xl font-semibold text-amber-800 mb-3 font-serif">Our Mission</h3>
+              <p className="text-lg text-gray-700">
+                To serve as a beacon of knowledge, guiding people to rediscover the roots of Indian ethics and values and inspire a deeper appreciation of our roots.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-3xl font-semibold text-amber-800 mb-3 font-serif">Our Vision</h3>
+              <p className="text-lg text-gray-700">
+                To cultivate a global community grounded in mutual respect, integrity, and harmony, where compassion and honesty are practiced virtues.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 3: Core Objectives (Maroon Section) */}
+      <section className="bg-[#6D2828] text-amber-100 py-20">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl font-bold text-center text-white mb-12 font-serif">
+            Our Core Objectives
+          </h2>
+          {/* Using cream-colored cards on the maroon background */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <ObjectiveCard
+              title="Awareness"
+              description="Create widespread awareness about timeless principles found in Indian traditions."
+            />
+            <ObjectiveCard
+              title="Education"
+              description="Provide structured learning opportunities about Indian ethics, values, and philosophies."
+            />
+            <ObjectiveCard
+              title="Practice"
+              description="Encourage individuals to incorporate these values into their daily lives."
+            />
+            <ObjectiveCard
+              title="Integration"
+              description="Build a bridge between ancient Indian knowledge and contemporary life."
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Section 4: Why CIKV Matters Today */}
+      <section className="bg-white py-20">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl font-bold text-center text-amber-900 mb-6 font-serif">
+            Why CIKV Matters Today
+          </h2>
+          <p className="text-lg text-gray-700 leading-relaxed max-w-4xl mx-auto text-center mb-12">
+            In an era of rapid globalization and ethical dilemmas, CIKV stands as a reminder that solutions to
+            modern challenges lie within our own heritage. Indian knowledge systems emphasize:
+          </p>
+          <ul className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <li className="text-center">
+              {/* You can replace this 🪷 with a real icon */}
+              <div className="text-6xl text-yellow-700 mb-4">🪷</div>
+              <h3 className="text-2xl font-semibold text-amber-800 mb-3 font-serif">Balance & Harmony</h3>
+              <p className="text-gray-600">Through the concept of Dharma, the guiding principle of duty and righteousness.</p>
+            </li>
+            <li className="text-center">
+              {/* You can replace this 🧘 with a real icon */}
+              <div className="text-6xl text-yellow-700 mb-4">🧘</div>
+              <h3 className="text-2xl font-semibold text-amber-800 mb-3 font-serif">Self-Realization</h3>
+              <p className="text-gray-600">Through practices like Yoga and meditation, fostering inner peace and resilience.</p>
+            </li>
+            <li className="text-center">
+              {/* You can replace this 🌍 with a real icon */}
+              <div className="text-6xl text-yellow-700 mb-4">🌍</div>
+              <h3 className="text-2xl font-semibold text-amber-800 mb-3 font-serif">Universal Brotherhood</h3>
+              <p className="text-gray-600">Promoted by the idea of Vasudhaiva Kutumbakam—"the world is one family."</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Section 5: Call to Action (Maroon Section)
+      <section className="bg-[#6D2828] text-amber-100 py-20">
+        <div className="container mx-auto px-6 text-center max-w-3xl">
+          <h2 className="text-4xl font-bold text-white mb-6 font-serif">
+            Join Our Journey
+          </h2>
+          <p className="text-xl text-amber-100 leading-relaxed mb-8">
+            We invite you to join us in this noble journey of rediscovery and renewal. Let us together honor the wisdom of our ancestors, nurture ethical consciousness, and inspire generations to come.
+          </p>
+          <Link 
+            to="/forms" 
+            className="inline-block bg-amber-600 text-white px-8 py-3 rounded-md shadow-lg hover:bg-amber-700 text-lg font-semibold transition duration-300 ease-in-out"
+          >
+            Join The Society
+          </Link>
+        </div>
+      </section> */}
+    </main>
+  );
+}
+
+// A helper component to keep the Objective cards clean
+function ObjectiveCard({ title, description }) {
+  return (
+    <div className="bg-[#FFFBEB] text-gray-800 p-6 rounded-lg shadow-lg text-center transition-transform hover:scale-105">
+      {/* You can add a matching icon here */}
+      <h3 className="text-2xl font-semibold text-amber-900 mb-3 font-serif">{title}</h3>
+      <p>{description}</p>
     </div>
   );
-};
-
-export default About;
+}
