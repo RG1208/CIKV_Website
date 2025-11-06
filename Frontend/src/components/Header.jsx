@@ -33,17 +33,7 @@ export default function Header() {
             <Link to="/about" className="hover:text-white font-medium">About Society</Link>
             <Link to="/events" className="hover:text-white font-medium">Events</Link>
             <Link to="/gallery" className="hover:text-white font-medium">Gallery</Link>
-            <div className="relative group">
-              <button className="hover:text-white font-medium flex items-center">
-                Blogs/Reviews
-                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-              </button>
-              {/* Dropdown Menu */}
-              <div className="absolute hidden group-hover:block bg-amber-800 shadow-lg mt-2 rounded-md border border-amber-700 z-50">
-                <Link to="/blogs" className="block px-4 py-2 hover:bg-amber-700 hover:text-white">Blogs</Link>
-                <Link to="/reviews" className="block px-4 py-2 hover:bg-amber-700 hover:text-white">Reviews</Link>
-              </div>
-            </div>
+            <Link to="/blogs" className="hover:text-white font-medium">Blogs</Link>
             <Link to="/forms" className="hover:text-white font-medium">Forms</Link>
             <Link to="/contact" className="hover:text-white font-medium">Contact Us</Link>
             {/* <Link to="/login" className="hover:text-white font-medium">Core Team Login</Link> */}
