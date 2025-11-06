@@ -14,10 +14,10 @@ export default function AboutPage() {
     <main className="bg-[#FFFBEB]">
       
       {/* Section 1: Hero Banner */}
-      {/* This uses the same banner style from your homepage for consistency */}
+      {/* Updated to match the banner style used in Events and Gallery pages for uniformity */}
       <section 
-        className="relative bg-cover bg-center h-[40vh]" 
-        style={{ backgroundImage: "url('/assets/about-banner-yoga.jpg')" }} // Suggest using a fitting banner image
+        className="relative bg-cover bg-center h-[30vh]" 
+        style={{ backgroundImage: "url('/assets/about-banner-scrolls.jpg')" }}
       >
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <div className="container relative z-10 mx-auto px-6 h-full flex flex-col justify-center">
