@@ -17,10 +17,10 @@ class Event(db.Model):
             "id": self.id,
             "title": self.title,
             "description": self.description,
-            "date": self.date.isoformat(),
+            "date": self.date.isoformat() if self.date else None,
             "category": self.category,
             "image_url": self.image_url,
-            "created_at": self.created_at.isoformat()
+            "created_at": self.created_at.isoformat() if self.created_at else None
         }
 
     def __repr__(self):

@@ -5,6 +5,11 @@ from datetime import datetime
 
 event_bp = Blueprint("event_bp", __name__)
 
+# ---- TEST ROUTE ----
+@event_bp.route("/events/test", methods=["GET"])
+def test_events():
+    return jsonify({"message": "Events API is working!"}), 200
+
 # ---- CREATE EVENT ----
 @event_bp.route("/events/", methods=["POST"])
 def create_event():
@@ -29,15 +34,21 @@ def create_event():
 # ---- GET ALL EVENTS ----
 @event_bp.route("/events/", methods=["GET"])
 def get_events():
-    events = Event.query.order_by(Event.date.desc()).all()
-    return jsonify([e.to_dict() for e in events]), 200
+    try:
+        events = Event.query.order_by(Event.date.desc()).all()
+        return jsonify([e.to_dict() for e in events]), 200
+    except Exception as e:
+        return jsonify({"message": f"Error fetching events: {str(e)}"}), 500
 
 
 # ---- GET SINGLE EVENT ----
 @event_bp.route("/events/<int:event_id>", methods=["GET"])
 def get_event(event_id):
-    event = Event.query.get_or_404(event_id)
-    return jsonify(event.to_dict()), 200
+    try:
+        event = Event.query.get_or_404(event_id)
+        return jsonify(event.to_dict()), 200
+    except Exception as e:
+        return jsonify({"message": f"Error fetching event: {str(e)}"}), 500
 
 
 # ---- UPDATE EVENT ----

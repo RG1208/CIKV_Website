@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import cikvBanner2 from '../assets/cikv_banner2.png';
 // Example icons (you would import your own or use a library like react-icons)
 // For this example, I'll use simple SVGs as placeholders.
 // You could replace these with icons for: Awareness, Education, Practice, Integration
@@ -17,7 +18,7 @@ export default function AboutPage() {
       {/* Updated to match the banner style used in Events and Gallery pages for uniformity */}
       <section 
         className="relative bg-cover bg-center h-[30vh]" 
-        style={{ backgroundImage: "url('/assets/about-banner-scrolls.jpg')" }}
+        style={{ backgroundImage: `url(${cikvBanner2})` }}
       >
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <div className="container relative z-10 mx-auto px-6 h-full flex flex-col justify-center">
@@ -128,24 +129,6 @@ export default function AboutPage() {
           </ul>
         </div>
       </section>
-
-      {/* Section 5: Call to Action (Maroon Section)
-      <section className="bg-[#6D2828] text-amber-100 py-20">
-        <div className="container mx-auto px-6 text-center max-w-3xl">
-          <h2 className="text-4xl font-bold text-white mb-6 font-serif">
-            Join Our Journey
-          </h2>
-          <p className="text-xl text-amber-100 leading-relaxed mb-8">
-            We invite you to join us in this noble journey of rediscovery and renewal. Let us together honor the wisdom of our ancestors, nurture ethical consciousness, and inspire generations to come.
-          </p>
-          <Link 
-            to="/forms" 
-            className="inline-block bg-amber-600 text-white px-8 py-3 rounded-md shadow-lg hover:bg-amber-700 text-lg font-semibold transition duration-300 ease-in-out"
-          >
-            Join The Society
-          </Link>
-        </div>
-      </section> */}
     </main>
   );
 }

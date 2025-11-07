@@ -14,7 +14,7 @@ export default function Header() {
   };
 
   return (
-    // Updated header color to match the golden-brown from the screenshot
+    // Updated header color to amber-amber-800
     <header className="bg-amber-800 text-amber-100 shadow-md sticky top-0 z-50">
       <div className="w-full flex items-center justify-between py-4 relative">
         {/* Left: CIKV Logo + Name */}
@@ -39,7 +39,7 @@ export default function Header() {
             {/* <Link to="/login" className="hover:text-white font-medium">Core Team Login</Link> */}
           </nav>
           {/* VIPS Logo */}
-          <div className="flex items-center pl-4 border-l border-amber-600">
+          <div className="flex items-center pl-4 border-l border-amber-500">
             <img src={vipsLogo} alt="VIPS Logo" className="h-12 w-auto" />
           </div>
         </div>
@@ -57,16 +57,16 @@ export default function Header() {
       {/* Mobile Navigation Drawer (Colors updated) */}
       {mobileNavOpen && (
         <nav className="md:hidden bg-amber-800 shadow-inner absolute top-full left-0 w-full z-40">
-          <Link to="/" onClick={closeMobileMenu} className="block px-6 py-3 text-amber-100 hover:bg-amber-700">Home</Link>
-          <Link to="/about" onClick={closeMobileMenu} className="block px-6 py-3 text-amber-100 hover:bg-amber-700">About Society</Link>
-          <Link to="/events" onClick={closeMobileMenu} className="block px-6 py-3 text-amber-100 hover:bg-amber-700">Events</Link>
-          <Link to="/gallery" onClick={closeMobileMenu} className="block px-6 py-3 text-amber-100 hover:bg-amber-700">Gallery</Link>
-          <Link to="/blogs" onClick={closeMobileMenu} className="block px-6 py-3 text-amber-100 hover:bg-amber-700">Blogs</Link>
-          <Link to="/reviews" onClick={closeMobileMenu} className="block px-6 py-3 text-amber-100 hover:bg-amber-700">Reviews</Link>
-          <Link to="/forms" onClick={closeMobileMenu} className="block px-6 py-3 text-amber-100 hover:bg-amber-700">Forms</Link>
-          <Link to="/contact" onClick={closeMobileMenu} className="block px-6 py-3 text-amber-100 hover:bg-amber-700">Contact Us</Link>
-          {/* <Link to="/login" onClick={closeMobileMenu} className="block px-6 py-3 text-amber-100 hover:bg-amber-700">Core Team Login</Link> */}
-          <div className="px-6 py-4 border-t border-amber-700">
+          <Link to="/" onClick={closeMobileMenu} className="block px-6 py-3 text-amber-100 hover:bg-amber-800">Home</Link>
+          <Link to="/about" onClick={closeMobileMenu} className="block px-6 py-3 text-amber-100 hover:bg-amber-800">About Society</Link>
+          <Link to="/events" onClick={closeMobileMenu} className="block px-6 py-3 text-amber-100 hover:bg-amber-800">Events</Link>
+          <Link to="/gallery" onClick={closeMobileMenu} className="block px-6 py-3 text-amber-100 hover:bg-amber-800">Gallery</Link>
+          <Link to="/blogs" onClick={closeMobileMenu} className="block px-6 py-3 text-amber-100 hover:bg-amber-800">Blogs</Link>
+          <Link to="/reviews" onClick={closeMobileMenu} className="block px-6 py-3 text-amber-100 hover:bg-amber-800">Reviews</Link>
+          <Link to="/forms" onClick={closeMobileMenu} className="block px-6 py-3 text-amber-100 hover:bg-amber-800">Forms</Link>
+          <Link to="/contact" onClick={closeMobileMenu} className="block px-6 py-3 text-amber-100 hover:bg-amber-800">Contact Us</Link>
+          {/* <Link to="/login" onClick={closeMobileMenu} className="block px-6 py-3 text-amber-100 hover:bg-amber-amber-800">Core Team Login</Link> */}
+          <div className="px-6 py-4 border-t border-amber-500">
             <img src={vipsLogo} alt="VIPS Logo" className="h-10 w-auto mx-auto" />
           </div>
         </nav>

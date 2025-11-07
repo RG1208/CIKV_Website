@@ -1,4 +1,4 @@
-from flask import Flask #type:ignore
+from flask import Flask, jsonify #type:ignore
 from flask_cors import CORS #type:ignore
 from dotenv import load_dotenv #type:ignore
 import os
@@ -22,6 +22,15 @@ def create_app():
     app.register_blueprint(blog_bp, url_prefix='/api')
     app.register_blueprint(event_bp, url_prefix='/api')
     app.register_blueprint(gallery_bp, url_prefix='/api')
+
+    # Error handlers to return JSON instead of HTML
+    @app.errorhandler(404)
+    def not_found(error):
+        return jsonify({"message": "Resource not found"}), 404
+
+    @app.errorhandler(500)
+    def internal_error(error):
+        return jsonify({"message": "Internal server error", "error": str(error)}), 500
 
     with app.app_context():
         db.create_all()

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // Removed unused 'Link' import
 import { HiArrowLeft, HiOutlineX } from 'react-icons/hi';
+import cikvBanner2 from '../assets/cikv_banner2.png';
 
 // --- Main Gallery Page Component ---
 // This component manages whether to show the 'album-list' or 'album-detail' view.
@@ -266,8 +267,7 @@ function PageBanner({ title, subtitle }) {
   return (
     <section 
       className="relative bg-cover bg-center h-[30vh]" 
-      // Using a generic, fitting image for the gallery banner
-      style={{ backgroundImage: "url('/assets/about-banner-scrolls.jpg')" }} 
+      style={{ backgroundImage: `url(${cikvBanner2})` }}
     >
       <div className="absolute inset-0 bg-black opacity-40"></div>
       <div className="container relative z-10 mx-auto px-6 h-full flex flex-col justify-center">

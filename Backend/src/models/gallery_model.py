@@ -14,7 +14,7 @@ class GalleryImage(db.Model):
             "id": self.id,
             "event_name": self.event_name,
             "image_url": self.image_url,
-            "uploaded_at": self.uploaded_at.isoformat()
+            "uploaded_at": self.uploaded_at.isoformat() if self.uploaded_at else None
         }
 
     def __repr__(self):

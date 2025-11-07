@@ -9,6 +9,7 @@ import About from "./pages/About";
 import Events from "./pages/Events";
 import Gallery from "./pages/Gallery";
 import Blogs from "./pages/Blogs";
+import ContactUs from "./pages/contactUs";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
             <Route path="/events" element={<Events />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/blogs" element={<Blogs />} />
+            <Route path="/contact" element={<ContactUs />} />
           </Routes>
         </main>
 

@@ -4,8 +4,8 @@ import React from 'react';
 
 export default function Footer() {
   return (
-    // Main footer container with dark maroon background and light text
-    <footer className="bg-[#6D2828] text-amber-100 font-sans">
+    // Main footer container with amber-800 background to match header
+    <footer className="bg-amber-800 text-amber-100 font-sans">
       <div className="container mx-auto px-6 py-10">
         
         {/* Top Row: Affiliation and Join Button */}
@@ -19,7 +19,7 @@ export default function Footer() {
           <div className="flex-shrink-0">
             <Link 
               to="/forms" 
-              className="inline-block bg-amber-600 text-white px-8 py-3 rounded-md shadow-lg hover:bg-amber-700 text-lg font-semibold transition duration-300 ease-in-out"
+              className="inline-block bg-amber-800 text-white px-8 py-3 rounded-md shadow-lg hover:bg-amber-800 text-lg font-semibold transition duration-300 ease-in-out"
             >
               Join The Society
             </Link>
@@ -27,7 +27,7 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <hr className="border-amber-700 my-8" />
+        <hr className="border-amber-500 my-8" />
 
         {/* Bottom Row: Links, Copyright, and Socials */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
@@ -46,15 +46,15 @@ export default function Footer() {
           {/* Social Media Icons */}
           <div className="flex justify-center items-center space-x-4">
             <a href="https://www.instagram.com/cikvvips/" target="_blank" rel="noopener noreferrer" 
-               className="p-2 rounded-full hover:bg-amber-700 transition duration-200" aria-label="Instagram">
+               className="p-2 rounded-full hover:bg-amber-800 transition duration-200" aria-label="Instagram">
               <FaInstagram size={22} />
             </a>
             <a href="https://linkedin.com/company/cikv" target="_blank" rel="noopener noreferrer"
-               className="p-2 rounded-full hover:bg-amber-700 transition duration-200" aria-label="LinkedIn">
+               className="p-2 rounded-full hover:bg-amber-800 transition duration-200" aria-label="LinkedIn">
               <FaLinkedin size={22} />
             </a>
             <a href="mailto:info@cikv.org"
-               className="p-2 rounded-full hover:bg-amber-700 transition duration-200" aria-label="Email">
+               className="p-2 rounded-full hover:bg-amber-800 transition duration-200" aria-label="Email">
               <FaEnvelope size={22} />
             </a>
           </div>

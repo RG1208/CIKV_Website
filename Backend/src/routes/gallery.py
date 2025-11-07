@@ -20,15 +20,21 @@ def add_image():
 # ---- GET ALL IMAGES ----
 @gallery_bp.route("/gallery/", methods=["GET"])
 def get_images():
-    images = GalleryImage.query.order_by(GalleryImage.uploaded_at.desc()).all()
-    return jsonify([img.to_dict() for img in images]), 200
+    try:
+        images = GalleryImage.query.order_by(GalleryImage.uploaded_at.desc()).all()
+        return jsonify([img.to_dict() for img in images]), 200
+    except Exception as e:
+        return jsonify({"message": f"Error fetching images: {str(e)}"}), 500
 
 
 # ---- GET IMAGES BY EVENT ----
 @gallery_bp.route("/gallery/events/<string:event_name>", methods=["GET"])
 def get_images_by_event(event_name):
-    images = GalleryImage.query.filter_by(event_name=event_name).all()
-    return jsonify([img.to_dict() for img in images]), 200
+    try:
+        images = GalleryImage.query.filter_by(event_name=event_name).all()
+        return jsonify([img.to_dict() for img in images]), 200
+    except Exception as e:
+        return jsonify({"message": f"Error fetching images for event: {str(e)}"}), 500
 
 
 # ---- UPDATE IMAGE ----
