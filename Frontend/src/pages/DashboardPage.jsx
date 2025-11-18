@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { HiOfficeBuilding, HiPencilAlt, HiPhotograph, HiCalendar, HiLogout, HiPlus, HiTrash, HiPencil, HiX, HiChevronDown, HiChevronUp } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
+import FormsPage from './Forms';
 
 // --- Main Dashboard Page Component ---
 // This holds the layout and manages which panel is active
@@ -10,6 +11,7 @@ export default function DashboardPage() {
 
   const handleLogout = () => {
     // In a real app, you'd clear the auth token here
+    localStorage.removeItem('authToken');
     navigate('/login');
   };
 
@@ -21,6 +23,8 @@ export default function DashboardPage() {
         return <BlogPanel />;
       case 'gallery':
         return <GalleryPanel />;
+      case 'forms':
+        return <FormPanel />;
       default:
         return <EventPanel />;
     }
@@ -53,6 +57,12 @@ export default function DashboardPage() {
             label="Manage Gallery"
             isActive={activePanel === 'gallery'}
             onClick={() => setActivePanel('gallery')}
+          />
+          <SidebarButton
+            icon={<HiPencilAlt size={20} />}
+            label="Manage Forms"
+            isActive={activePanel === 'forms'}
+            onClick={() => setActivePanel('forms')}
           />
         </ul>
 
@@ -568,6 +578,168 @@ function GalleryPanel() {
               </div>
             </div>
           ))
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ==================================================================
+// --- 4. FORM MANAGEMENT PANEL ---
+// ==================================================================
+const initialFormState = {
+  title: '',
+  google_form_link: '',
+  status: 'inactive',
+};
+
+function FormPanel() {
+  const [forms, setForms] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [showForm, setShowForm] = useState(false);
+  const [currentForm, setCurrentForm] = useState(initialFormState);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [editingId, setEditingId] = useState(null);
+
+  // --- Fetch All Forms ---
+  const fetchForms = () => {
+    setIsLoading(true);
+    fetch('/api/forms')
+      .then(res => res.json())
+      .then(data => {
+        setForms(data);
+        setIsLoading(false);
+      })
+      .catch(err => {
+        setError('Failed to fetch forms.');
+        setIsLoading(false);
+      });
+  };
+  
+  useEffect(() => {
+    fetchForms();
+  }, []);
+
+  // --- Open Create Form ---
+  const handleCreate = () => {
+    setIsEditMode(false);
+    setCurrentForm(initialFormState);
+    setShowForm(true);
+  };
+
+  // --- Open Edit Form ---
+  const handleEdit = (form) => {
+    setIsEditMode(true);
+    setEditingId(form.id);
+    setCurrentForm(form);
+    setShowForm(true);
+  };
+
+  // --- Handle Form Submission (Create/Update) ---
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const url = isEditMode ? `/api/forms/${editingId}` : '/api/forms';
+    const method = isEditMode ? 'PUT' : 'POST';
+
+    fetch(url, {
+      method: method,
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+      },
+      body: JSON.stringify(currentForm),
+    })
+    .then(res => {
+      if (!res.ok) throw new Error('Submission failed');
+      return res.json();
+    })
+    .then(() => {
+      setShowForm(false);
+      fetchForms(); // Refresh list
+    })
+    .catch(err => setError(err.message));
+  };
+
+  // --- Handle Delete ---
+  const handleDelete = (id) => {
+    if (window.confirm('Are you sure you want to delete this form?')) {
+      fetch(`/api/forms/${id}`, { 
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+        }
+      })
+        .then(res => {
+          if (!res.ok) throw new Error('Delete failed');
+          fetchForms(); // Refresh list
+        })
+        .catch(err => setError(err.message));
+    }
+  };
+
+  return (
+    <div>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-4xl font-bold text-amber-900 font-serif">Manage Forms</h1>
+        <button
+          onClick={handleCreate}
+          className="flex items-center bg-amber-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-amber-700 font-semibold"
+        >
+          <HiPlus className="mr-2" />
+          Create New Form
+        </button>
+      </div>
+
+      {error && <p className="text-red-600 mb-4">{error}</p>}
+      
+      {/* --- Form Modal --- */}
+      {showForm && (
+        <FormModal title={isEditMode ? 'Edit Form' : 'Create New Form'} onClose={() => setShowForm(false)}>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <FormInput label="Title" id="title" value={currentForm.title} onChange={(e) => setCurrentForm({...currentForm, title: e.target.value})} />
+            <FormInput label="Google Form Link" id="google_form_link" value={currentForm.google_form_link} onChange={(e) => setCurrentForm({...currentForm, google_form_link: e.target.value})} />
+            <div>
+              <label htmlFor="status" className="block text-sm font-semibold text-gray-700 mb-1">
+                Status
+              </label>
+              <select
+                id="status"
+                name="status"
+                value={currentForm.status}
+                onChange={(e) => setCurrentForm({...currentForm, status: e.target.value})}
+                className="w-full p-2 rounded-md border border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500"
+              >
+                <option value="inactive">Inactive</option>
+                <option value="active">Active</option>
+              </select>
+            </div>
+            <button type="submit" className="bg-amber-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-amber-700 font-semibold">
+              {isEditMode ? 'Save Changes' : 'Create Form'}
+            </button>
+          </form>
+        </FormModal>
+      )}
+
+      {/* --- List of Forms --- */}
+      <div className="bg-white rounded-lg shadow-md overflow-hidden">
+        {isLoading ? (
+          <div className="p-6 text-center"><LoadingSpinner /></div>
+        ) : (
+          <ul className="divide-y divide-gray-200">
+            {forms.map(form => (
+              <li key={form.id} className="p-4 flex justify-between items-center">
+                <div>
+                  <h3 className="text-lg font-semibold text-amber-900">{form.title}</h3>
+                  <span className="text-sm text-gray-500">{form.status}</span>
+                </div>
+                <div className="space-x-2">
+                  <button onClick={() => handleEdit(form)} className="p-2 text-blue-600 hover:text-blue-800"><HiPencil size={18} /></button>
+                  <button onClick={() => handleDelete(form.id)} className="p-2 text-red-600 hover:text-red-800"><HiTrash size={18} /></button>
+                </div>
+              </li>
+            ))}
+          </ul>
         )}
       </div>
     </div>

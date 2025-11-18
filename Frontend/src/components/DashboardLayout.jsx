@@ -16,7 +16,9 @@ export default function DashboardLayout({ children }) {
       <div className="w-64 bg-gray-800 text-white flex flex-col">
         <div className="p-4 text-2xl font-bold">Dashboard</div>
         <nav className="flex-grow">
-          {/* Add sidebar links here */}
+          <Link to="/forms" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
+            Forms
+          </Link>
         </nav>
         <div className="p-4">
           <button

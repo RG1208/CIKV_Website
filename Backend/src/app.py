@@ -4,7 +4,7 @@ from dotenv import load_dotenv #type:ignore
 import os
 
 from extensions import db, jwt
-from routes import auth_bp, blog_bp, event_bp, gallery_bp
+from routes import auth_bp, blog_bp, event_bp, gallery_bp, forms_bp
 from config import Config
 
 load_dotenv()
@@ -23,6 +23,7 @@ def create_app():
     app.register_blueprint(blog_bp, url_prefix='/api')
     app.register_blueprint(event_bp, url_prefix='/api')
     app.register_blueprint(gallery_bp, url_prefix='/api')
+    app.register_blueprint(forms_bp, url_prefix='/api')
 
     # Error handlers to return JSON instead of HTML
     @app.errorhandler(404)
