@@ -30,7 +30,7 @@ export default function LoginPage() {
       // --- ON SUCCESS ---
       // In a real app, you would save the user/token to context or local storage
       // For now, we just redirect to the dashboard.
-      localStorage.setItem('authToken', 'dummy-token');
+      localStorage.setItem('authToken', data.access_token);
       navigate('/dashboard'); 
 
     } catch (err) {

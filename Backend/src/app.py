@@ -3,7 +3,7 @@ from flask_cors import CORS #type:ignore
 from dotenv import load_dotenv #type:ignore
 import os
 
-from extensions import db
+from extensions import db, jwt
 from routes import auth_bp, blog_bp, event_bp, gallery_bp
 from config import Config
 
@@ -15,6 +15,7 @@ def create_app():
 
     # Init extensions
     db.init_app(app)
+    jwt.init_app(app)
     CORS(app)
 
     # Register blueprints
